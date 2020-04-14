@@ -9,8 +9,6 @@ const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({host:'ipfs.infura.io', port:5001,protocol:'https'})
 
 const ganache_url = 'HTTP://127.0.0.1:7545'
-// const ropsten_url = 'https://ropsten.infura.io/v3/866c1d6efc4f4b54a6156690c492314c'
-// const list = ['QmQdXyCTVnESNHDVxQqFCrYjByt5PWTHpV6rrsXVmVmeSR','QmbCpWVow7ry8nxKVkZUt9cSJr5KHR1Ziazu3jjsdyKaq7','QmT1VftRBrnUQxnXKAC3tf8ZgAwbbb2fdo5UaKgnKiGVeR']
 class App extends Component { 
 
   constructor(props){
@@ -30,34 +28,7 @@ class App extends Component {
   async componentWillMount() {
     await this.laodBlockchain()
     await this.loadHashData()
-    // this.setState({loading:true})
   }
-
-  // async loadHashData() {
-  //   const cont = this.state.contract
-  //   var count 
-  //   cont.methods.getCount().call({from:this.state.address},(error,result)=>{
-  //     if(error)
-  //       console.log(error)
-  //     else{
-  //       count = result.toNummber()
-  //       console.log("Loaded count: ",count)
-  //     } 
-  //   })
-  //   console.log("Count for loop: ",count)
-  //   for(let i=0;i<=count;i++){
-  //     cont.methods.getHash(i).call({from:this.state.address},(error,result)=>{
-  //       if(error)
-  //         console.log(error)
-  //       else {
-  //         console.log(i,"th result",result)
-  //         this.state.list.push([i+1,result])
-  //       }
-  //     })
-  //   }
-  //   this.setState({count:count+1})
-  // }
-
   async loadHashData() {
     const cont = this.state.contract
     var count 
@@ -80,7 +51,6 @@ class App extends Component {
         this.setState({count:count+1})
       } 
     })
-    // console.log("Count for loop: ",count)
     this.setState({loading:false})  
   }
 
@@ -189,16 +159,6 @@ class App extends Component {
           </div>
           <br />
           <Vote url={ganache_url} contract_address={this.state.contract_address} contract_abi={this.state.contract_abi} /> 
-          {/* <br />
-          <br />
-          <div className="container">
-            <h2>Upload Picture</h2>
-            <form method="post" onSubmit={this.onSubmit}>
-              <input type="file" onChange={this.getFile} />
-              <input type="text" placeholder="Enter account address" onChange={this.getAccount} />
-              <input type="submit" />
-            </form>
-          </div> */}
         </div>
       );
     }
