@@ -99,23 +99,24 @@ class App extends Component {
     ipfs.add(this.state.buffer,(err,res)=>{
       console.log("IPFS working...")
       if(err){
-        console.log(err)
+        alert("IPFS giving error")
+        console.log("Error in IPFS: ",err)
       }
       else{
         var hash = res[0].hash
         var c = parseInt(this.state.count)
-        console.log(hash,"========",c)
         this.state.list.push([c,hash])
         this.state.contract.methods.addImage(hash).send({from:this.state.account,gas:1000000},(error,result)=>{
-          if(error)
-            console.log("Error in updating: ",error)
+          if(error){
+            alert("Error in updating: ")
+            console.log("Error in updating:",error)
+          }
           else{
             console.log("Transaction Hash: ",result)
-            console.log("Upload Success")
+            alert("Upload Success")
           }
         })
         this.setState({count:c+1})
-        console.log(this.state)
       }
     })
   }

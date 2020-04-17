@@ -21,7 +21,6 @@ class Vote extends Component{
 		const web3 = new Web3(this.state.url)
 		const contract = new web3.eth.Contract(this.props.contract_abi,this.props.contract_address)
 		this.setState({contract:contract})
-		console.log("ADDRESS:",this.props.contract_address)
 	}
 
 	getID = (event)=>{
@@ -37,12 +36,13 @@ class Vote extends Component{
 	onSubmit = (event)=>{
 		event.preventDefault()
 		const contract = this.state.contract
-		console.log(contract)
 		contract.methods.voteImage(this.state.id).send({from:this.state.voter},(error,result)=>{
-			if(error)
+			if(error){
 				console.log(error)
+				alert("Vote not casted")
+			}
 			else{
-				console.log("Vote given",result)
+				alert("Vote Successfully Given")
 			}
 		})
 	}
