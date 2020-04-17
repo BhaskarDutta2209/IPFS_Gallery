@@ -1,8 +1,6 @@
 require('babel-register');
 require('babel-polyfill');
 
-var HDWalletProvider = require('truffle-hdwallet-provider')
-const MNEMONIC = 'run hockey mule december rural feel shoe order weird flag alcohol battle'
 module.exports = {
   networks: {
     development: {
