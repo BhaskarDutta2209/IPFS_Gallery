@@ -1,5 +1,6 @@
 # IPFS_Gallery
 A basic reactJs web page using IPFS for file upload and blockchain for storing the hash
+
 To use it:
 1. Install ganache and node js
 2. Clone the repository
